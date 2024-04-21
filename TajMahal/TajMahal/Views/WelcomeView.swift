@@ -14,14 +14,15 @@ struct WelcomeView: View {
             Image("TajMahal")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 335, height: 423)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .padding(.horizontal)
             
             HStack {
                 VStack (alignment: .leading){
                     Text("Restaurant Indien")
-                        .foregroundStyle(.secondary)
+                        .font(.system(.caption, design: .default, weight: .regular))
                     Text("Taj Mahal")
-                        .bold()
+                        .font(.system(.headline, design: .default, weight: .semibold))
                 }
                 Spacer()
                 Image("Logo")
@@ -30,7 +31,7 @@ struct WelcomeView: View {
                     .colorMultiply(.gray)
                     .frame(height: 40)
             }
-            .padding()
+            .padding(.horizontal)
             
             //complétons avec la vue réutilisable LineView
             LineView(imageName: Image("Horaire"), leftText: "Mardi", rightText: "11h30 - 14h30 • 18h30 - 22H00")
@@ -49,7 +50,9 @@ struct WelcomeView: View {
                     .bold()
             }
             .frame(width: 335, height: 40, alignment: .center)
-            .background(.red)
+            .background(
+                Color(#colorLiteral(red: 0.8560177684, green: 0.2718088031, blue: 0.2388259172, alpha: 1))
+            )
             .cornerRadius(10)
             .padding()
         }
@@ -59,6 +62,3 @@ struct WelcomeView: View {
 #Preview {
     WelcomeView()
 }
-
-// comment rendre tout visible qu'importe la taille de l'écran???
-

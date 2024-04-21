@@ -8,37 +8,49 @@
 import SwiftUI
 
 struct MenuRow: View {
-    // Référence vers le view model qui permet d'accéder aux tableaux d'entrées et de plats du menu
-    let viewModel: ViewModel = ViewModel()
     
     // Adding dishes as a stored property of Dish.
     var dishes: Dish
     
     var body: some View {
         HStack{
+            // image du plat
             dishes.image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 120,height: 90)
                 .cornerRadius(10)
+            
+            // Nom du plat, sa description, son prix et le niveau de piment
             VStack (alignment: .leading, spacing: 10) {
                 Text(dishes.name)
-                    .font(.system(size: 14))
+                    .font(.system(.callout, design: .default, weight: .regular))
+                    .foregroundStyle(Color(#colorLiteral(red: 0.3364975452, green: 0.3364975452, blue: 0.3364975452, alpha: 1)))
                 
                 Text(dishes.description)
-                    .foregroundStyle(.secondary)
+                    .font(.system(.caption, design: .default, weight: .regular))
+                    .foregroundStyle(Color(#colorLiteral(red: 0.4756370187, green: 0.4756369591, blue: 0.4756369591, alpha: 1)))
+                    .frame(maxWidth: .infinity,  alignment: .leading)
+                    .multilineTextAlignment(.leading)
                 
                 HStack {
-                    Text(dishes.price)   // ce text me parait un peu plus sombre sur maquette
+                    Text(dishes.price)
+                        .font(.system(.caption, design: .default, weight: .regular))
+                        .foregroundStyle(Color(#colorLiteral(red: 0.3364975452, green: 0.3364975452, blue: 0.3364975452, alpha: 1)))
+                    
                     Spacer()
                     
+                    // La vue SpicerView pour le niveau de piment
                     SpicerView(dishes: dishes)
                 }
-                .foregroundStyle(.secondary)
             }
+            .padding(.horizontal)
             .font(.system(size: 12))
             .baselineOffset(1.0)
         }
+        .padding(10)
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 

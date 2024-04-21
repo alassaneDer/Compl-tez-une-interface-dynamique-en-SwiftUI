@@ -12,7 +12,7 @@ struct SpicerView: View {
     // Adding dishes as a stored property of Dish.
     var dishes: Dish
     
-    // function used to get an integer that i'll store in rating
+    // fonction qui va retourner une valeur entre 1 et 3 correspondant au niveau de piment
     func getRating(rater: SpiceLevel) -> (Int) {
         if rater == SpiceLevel.hot {
             return 3
@@ -26,19 +26,23 @@ struct SpicerView: View {
     
     var body: some View {
         
-        // la variable rating stocke la valeur obtenue de la func getRating
+        // la variable rating stocke la valeur obtenue avec la fonction getRating
         let rating: Int = getRating(rater: dishes.spiceLevel)
         
-        ZStack { //je dois en faire une vue pour la réutiliser sur detailsView
+        ZStack {
+            // pour l'arrière plan sur la vue DetailsView()
             RoundedRectangle(cornerRadius: 11.0)
                 .fill(Color.white)
                 .frame(width: 80, height: 25)
+            // Niveau piment avec une ForEach
             HStack{
                 ForEach(1..<4) { index in
-                    Image("Spice")
-                        .renderingMode(.template)  //ici il reste à trouver l'icone exacte
-                        .font(.caption)
-                        .foregroundColor(rating >= index ? Color.red : Color.gray)
+                    Image("pepper")
+                        .renderingMode(.template)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 18, maxHeight: 12, alignment: .center)
+                        .foregroundStyle(rating >= index ? Color(#colorLiteral(red: 0.8560177684, green: 0.2718088031, blue: 0.2388259172, alpha: 1)) : Color.gray)
                 }
             }
         }

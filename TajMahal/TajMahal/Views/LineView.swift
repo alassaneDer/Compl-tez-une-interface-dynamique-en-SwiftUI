@@ -16,15 +16,13 @@ struct LineView: View {
     
     var body: some View {
         HStack {
-            imageName
+            imageName   // correspond à l'icone
             Text(leftText)
-            Spacer()// pour séparer les éléments
+            Spacer()
             Text(rightText)
         }
-//        .font(.system(size: 20, weight: .thin, design: .default))
-        //.padding()//pour de la marge
-        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-        .foregroundStyle(.secondary)
+        .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
+        .font(.system(.caption, design: .default, weight: .regular))
     }
 }
 

@@ -15,64 +15,64 @@ struct MenuView: View {
     
     
     var body: some View {
-        NavigationStack {
-            List {
-                
-                // section entrées
-                Section {
-                    ForEach (viewModel.apetizerArray) { dishes in
-                        NavigationLink {
-                            DetailsView(dishes: dishes)
-                        } label: {
-                            MenuRow(dishes: dishes)
+        ZStack {
+//             Background
+            Color(#colorLiteral(red: 0.9475662112, green: 0.9475662112, blue: 0.9475662112, alpha: 1))
+                .ignoresSafeArea()
+            
+            // List with a ScrollView()
+            ScrollView {
+                VStack(spacing: 15) {
+                    
+                    // section entrées
+                    Section {
+                        ForEach (viewModel.apetizerArray) { dishes in
+                            NavigationLink {
+                                DetailsView(dishes: dishes)
+                            } label: {
+                                MenuRow(dishes: dishes)
+                            }
                         }
+                        .padding([.horizontal], 12)
+                    } header: {
+                        Text("Entrées")
+                            .font(.system(.subheadline, design: .default, weight: .regular))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 12)
                     }
-                    .padding([.horizontal], 12)
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(
-                        RoundedRectangle(cornerRadius: 10.0)
-                            .fill(Color.white)
-                            .padding(5)
-                    )
-                    .frame(width: 335, height: 110)
-                } header: {
-                    Text("Entrées")
-                        .textCase(.none)
-                        .font(.system(size: 14, weight: .black, design: .serif))
-                }
-                
-                //section plats principaux
-                Section {
-                    ForEach(viewModel.mainCourseArray) { dishes in
-                        NavigationLink {
-                            DetailsView(dishes: dishes)
-                        } label: {
-                            MenuRow(dishes: dishes)
+                    
+                    // section plats principaux
+                    Section {
+                        ForEach(viewModel.mainCourseArray) { dishes in
+                            NavigationLink {
+                                DetailsView(dishes: dishes)
+                            } label: {
+                                MenuRow(dishes: dishes)
+                            }
                         }
+                        .padding([.horizontal], 12)
+                    } header: {
+                        Text("Plats Principaux")
+                            .font(.system(.subheadline, design: .default, weight: .regular))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 12)
                     }
-                    .padding([.horizontal], 12)
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(
-                        RoundedRectangle(cornerRadius: 10.0)
-                            .fill(Color.white)
-                            .padding(5)
-                    )
-                    .frame(width: 335, height: 110)
-    //                .buttonStyle(PlainButtonStyle()).opacity(0.0)
-                } header: {
-                    Text("Plats Principaux")
-                        .textCase(.none)
-                        .font(.system(size: 14, weight: .black, design: .serif))
+                    .navigationTitle("Menu")
+                    .font(.system(.headline, design: .default, weight: .semibold))
+                    .navigationBarTitleDisplayMode(.inline) // pour le mettre tout en haut
                 }
-                .navigationTitle("Menu")
-                .navigationBarTitleDisplayMode(.inline) // pour le mettre tout en haut
             }
+            
+           /* .background(
+                Color.gray
+                    .ignoresSafeArea()
+            )*/
         }
     }
 }
 
 #Preview {
-//    NavigationStack{
+    NavigationView {
         MenuView()
-//    }
+    }
 }
