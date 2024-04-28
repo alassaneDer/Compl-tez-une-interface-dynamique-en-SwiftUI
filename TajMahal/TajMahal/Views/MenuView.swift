@@ -13,6 +13,10 @@ struct MenuView: View {
     // Référence vers le view model qui permet d'accéder aux tableaux d'entrées et de plats du menu
     let viewModel: ViewModel = ViewModel()
     
+    // Declaring the dismiss Environnement value
+    @Environment(\.dismiss) var dismiss
+
+    
     
     var body: some View {
         ZStack {
@@ -59,14 +63,18 @@ struct MenuView: View {
                     }
                     .navigationTitle("Menu")
                     .font(.system(.headline, design: .default, weight: .semibold))
-                    .navigationBarTitleDisplayMode(.inline) // pour le mettre tout en haut
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarItems(leading:
+                        Button {
+                        // calling the dismiss() to perform the dismissal
+                            dismiss()
+                            } label: {
+                                Image(systemName: "chevron.backward")
+                    })
+                    .foregroundStyle(.black)
                 }
             }
-            
-           /* .background(
-                Color.gray
-                    .ignoresSafeArea()
-            )*/
         }
     }
 }

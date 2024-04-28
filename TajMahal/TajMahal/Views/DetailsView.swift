@@ -12,6 +12,10 @@ struct DetailsView: View {
     // Adding dishes as a stored property of Dish.
     var dishes: Dish
     
+    // Declaring the dismiss Environnement value
+    @Environment(\.dismiss) var dismiss
+
+    
     var body: some View {
         VStack(alignment: .leading) {
             ZStack {
@@ -43,10 +47,11 @@ struct DetailsView: View {
             .foregroundStyle(Color(#colorLiteral(red: 0.4078193903, green: 0.4078193307, blue: 0.4078193307, alpha: 1)))
             .padding(20.0)
         }
-        // configation de la navition bar pour le mettre en noir et à droite
+        // configation de la barre de navigation
         .navigationBarItems(leading:
             Button {
-                    print("add")
+            // calling dismiss() to perform the dismissal
+                dismiss()
                 } label: {
                     Image(systemName: "chevron.backward")
                     Text(dishes.name)

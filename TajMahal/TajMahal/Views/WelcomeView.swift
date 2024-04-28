@@ -14,8 +14,7 @@ struct WelcomeView: View {
             Image("TajMahal")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .padding(.horizontal)
+                .frame(minWidth: 335, idealWidth: 335, maxWidth: .infinity, minHeight: 423, idealHeight: 423, maxHeight: .infinity, alignment: .center)
             
             HStack {
                 VStack (alignment: .leading){
@@ -31,7 +30,8 @@ struct WelcomeView: View {
                     .colorMultiply(.gray)
                     .frame(height: 40)
             }
-            .padding(.horizontal)
+            .padding([.horizontal], 20)
+            .padding([.vertical], 15)
             
             //complétons avec la vue réutilisable LineView
             LineView(imageName: Image("Horaire"), leftText: "Mardi", rightText: "11h30 - 14h30 • 18h30 - 22H00")
@@ -49,12 +49,12 @@ struct WelcomeView: View {
                     .foregroundColor(.white)
                     .bold()
             }
-            .frame(width: 335, height: 40, alignment: .center)
+            .frame(minWidth: 350, minHeight: 40, alignment: .center)
             .background(
                 Color(#colorLiteral(red: 0.8560177684, green: 0.2718088031, blue: 0.2388259172, alpha: 1))
             )
             .cornerRadius(10)
-            .padding()
+            .padding([.top, .horizontal], 20)
         }
     }
 }
